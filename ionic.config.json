@@ -1,0 +1,7 @@
+{
+  "name": "aistudyapp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
