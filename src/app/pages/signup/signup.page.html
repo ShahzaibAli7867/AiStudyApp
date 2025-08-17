@@ -1,0 +1,88 @@
+<ion-content class="signup-container ion-padding">
+  <!-- Logo Section -->
+  <div class="logo">
+    <div class="logo-icon">
+      <ion-icon name="person-add-outline"></ion-icon>
+    </div>
+    <h1>Join Us Today</h1>
+    <p>Create your account and get started</p>
+  </div>
+
+  <!-- Success Message -->
+  <div *ngIf="signupSuccess" class="success-message">
+    <ion-icon name="checkmark-circle"></ion-icon>
+    Account created successfully!
+  </div>
+
+  <!-- Social Signup Section -->
+  <div class="social-signup">
+    <ion-button expand="block" fill="outline" (click)="onGoogleLogin()">
+      <ion-icon slot="start" name="logo-google"></ion-icon>
+      Google
+    </ion-button>
+    <ion-button expand="block" fill="outline" (click)="onFacebookLogin()">
+      <ion-icon slot="start" name="logo-facebook"></ion-icon>
+      Facebook
+    </ion-button>
+  </div>
+
+  <!-- Divider -->
+  <div class="divider">
+    <span>Or sign up with email</span>
+  </div>
+
+  <!-- Signup Form -->
+  <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+    <div class="form-row">
+      <ion-item>
+        <ion-label position="floating">First Name</ion-label>
+        <ion-input formControlName="firstName" required></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="isInvalid('firstName')">Please enter your first name</ion-text>
+
+      <ion-item>
+        <ion-label position="floating">Last Name</ion-label>
+        <ion-input formControlName="lastName" required></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="isInvalid('lastName')">Please enter your last name</ion-text>
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Email Address</ion-label>
+      <ion-input formControlName="email" type="email" required></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="isInvalid('email')">Please enter a valid email address</ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input formControlName="password" type="password" (ionInput)="checkPasswordStrength()"></ion-input>
+    </ion-item>
+    <div class="password-strength">
+      <div class="password-strength-bar" [ngStyle]="{'width': strength + '%'}"></div>
+    </div>
+    <ion-text color="danger" *ngIf="isInvalid('password')">Password must be at least 8 characters long</ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Confirm Password</ion-label>
+      <ion-input formControlName="confirmPassword" type="password"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="passwordMismatch">Passwords do not match</ion-text>
+
+    <ion-item lines="none">
+      <ion-checkbox slot="start" formControlName="terms"></ion-checkbox>
+      <ion-label>
+        I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+      </ion-label>
+    </ion-item>
+    <ion-text color="danger" *ngIf="!signupForm.get('terms')?.value && signupForm.touched">
+      You must accept the terms
+    </ion-text>
+
+    <ion-button type="submit" expand="block" class="signup-btn" (click)="onSignup()">Create Account</ion-button>
+  </form>
+
+  <!-- Login Link -->
+  <div class="login-link">
+    Already have an account? <a href="#">Sign in here</a>
+  </div>
+</ion-content>

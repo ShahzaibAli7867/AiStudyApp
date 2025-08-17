@@ -1,0 +1,213 @@
+ion-header {
+  ion-toolbar {
+    --background: #f8f8f8;
+    --border-width: 0;
+
+    ion-title {
+      font-weight: 600;
+      text-align: center;
+      padding: 0;
+      color: #333;
+    }
+
+    ion-back-button,
+    ion-button {
+      --color: #333;
+      ion-icon {
+        font-size: 6vw;
+        @media (min-width: 768px) {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+}
+
+ion-content {
+  --background: #f0f2f5;
+
+  .study-plan-details {
+    width: 90%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding-top: 5%;
+    padding-bottom: 5%;
+
+    .description {
+      font-size: 3.8vw;
+      color: #555;
+      margin-bottom: 2vw;
+      @media (min-width: 768px) {
+        font-size: 1rem;
+        margin-bottom: 10px;
+      }
+    }
+
+    .date-range {
+      font-size: 3.8vw;
+      font-weight: 500;
+      color: #444;
+      margin-bottom: 5vw;
+      @media (min-width: 768px) {
+        font-size: 1rem;
+        margin-bottom: 25px;
+      }
+    }
+
+    .tasks-heading {
+      font-size: 5vw;
+      font-weight: 600;
+      color: #333;
+      margin-top: 5vw;
+      margin-bottom: 3vw;
+      @media (min-width: 768px) {
+        font-size: 1.8rem;
+        margin-top: 30px;
+        margin-bottom: 15px;
+      }
+    }
+
+    .task-list {
+      background: transparent;
+      margin-bottom: 5vw;
+
+      ion-item-sliding {
+        margin-bottom: 1.5%;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+
+        ion-item {
+          --background: #ffffff;
+          --inner-padding-end: 0;
+          padding: 3vw;
+          --min-height: 18vw; // Responsive min height for task item
+
+          @media (min-width: 768px) {
+            --min-height: 90px;
+            padding: 15px;
+          }
+
+          ion-checkbox {
+            margin-right: 4vw;
+            @media (min-width: 768px) {
+              margin-right: 20px;
+            }
+          }
+
+          ion-label {
+            h4 {
+              font-size: 4.5vw;
+              font-weight: 600;
+              color: #333;
+              margin-bottom: 1vw;
+              @media (min-width: 768px) {
+                font-size: 1.2rem;
+                margin-bottom: 5px;
+              }
+            }
+            p {
+              font-size: 3.5vw;
+              color: #666;
+              margin-bottom: 1vw;
+              @media (min-width: 768px) {
+                font-size: 1rem;
+                margin-bottom: 5px;
+              }
+            }
+            .completed-task {
+              text-decoration: line-through;
+              color: #999;
+            }
+
+            .task-meta {
+              display: flex;
+              flex-wrap: wrap; // Allows items to wrap on smaller screens
+              gap: 2vw; // Space between meta items
+              font-size: 3vw;
+              color: #777;
+              margin-top: 1vw;
+
+              @media (min-width: 768px) {
+                gap: 10px;
+                font-size: 0.8rem;
+                margin-top: 5px;
+              }
+
+              span {
+                padding: 1vw 2vw;
+                border-radius: 5px;
+                background-color: #eee;
+                white-space: nowrap; // Keep tags on one line
+
+                @media (min-width: 768px) {
+                  padding: 5px 10px;
+                }
+              }
+
+              .priority-low { background-color: #e0f2f1; color: #00796b; } // Teal
+              .priority-medium { background-color: #fffde7; color: #fbc02d; } // Yellow
+              .priority-high { background-color: #ffebee; color: #d32f2f; } // Red
+              .category { background-color: #e8eaf6; color: #3f51b5; } // Indigo
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .no-plan-found {
+    text-align: center;
+    padding: 5%;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+
+    p {
+      color: #777;
+      font-size: 4vw;
+      margin-bottom: 4vw;
+      @media (min-width: 768px) {
+        font-size: 1rem;
+        margin-bottom: 20px;
+      }
+    }
+    ion-button {
+      --border-radius: 12px;
+    }
+  }
+}
+
+
+ion-footer {
+  ion-toolbar {
+    --background: #ffffff;
+    padding-bottom: env(safe-area-inset-bottom); // Account for notch on iPhones
+
+    ion-tab-bar {
+      --background: #ffffff;
+      height: 18vw; // Responsive height for tab bar
+      max-height: 90px; // Max height for larger screens
+
+      ion-tab-button {
+        --color: #92949c; // Default tab color
+        --color-selected: #667eea; // Selected tab color
+        flex-direction: column; // Stack icon and label
+        font-size: 2.5vw; // Responsive font size for labels
+
+        ion-icon {
+          font-size: 6vw; // Responsive font size for icons
+          margin-bottom: 0.5vw; // Small space between icon and label
+        }
+
+        @media (min-width: 768px) {
+          font-size: 0.8rem;
+          ion-icon {
+            font-size: 30px;
+            margin-bottom: 2px;
+          }
+        }
+      }
+    }
+  }
+}

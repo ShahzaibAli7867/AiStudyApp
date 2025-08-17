@@ -1,0 +1,86 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>StudyBuddy</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="settings-outline" (click)="openSettings()" color="black"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="main-content-wrapper">
+    <div class="profile-section">
+      <div class="avatar-container">
+        <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="User Avatar" />
+        <ion-icon name="camera-outline"></ion-icon>
+      </div>
+      <h2>Hi, Alex!</h2>
+      <p>Ready to learn something new today?</p>
+    </div>
+
+    <div class="quick-actions-section">
+      <h3>Quick Actions</h3>
+      <div class="action-buttons-grid">
+        <ion-button class="action-btn" fill="outline" expand="block" (click)="askAI()">
+          <ion-icon name="calendar-outline"></ion-icon>
+          <span>Ask AI</span>
+        </ion-button>
+
+        <ion-button class="action-btn" fill="outline" expand="block" (click)="smartNotes()">
+          <ion-icon name="document-text-outline"></ion-icon>
+          <span>Smart Notes</span>
+        </ion-button>
+
+        <ion-button class="action-btn" fill="outline" expand="block" (click)="flashcards()">
+          <ion-icon name="tablet-landscape-outline"></ion-icon>
+          <span>Flashcards</span>
+        </ion-button>
+
+        <ion-button class="action-btn" fill="outline" expand="block" (click)="studyPlan()">
+          <ion-icon name="calendar-number-outline"></ion-icon>
+          <span>Study Plan</span>
+        </ion-button>
+
+        <ion-button class="action-btn" fill="outline" expand="block" (click)="progressTracker()">
+          <ion-icon name="analytics-outline"></ion-icon>
+          <span>Progress Tracker</span>
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="home" routerLink="/home" routerDirection="root">
+          <ion-icon name="home-outline"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="ai-chat" routerLink="/ai-chat">
+          <ion-icon name="chatbox-outline"></ion-icon>
+          <ion-label>AI Chat</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="notes" routerLink="/notes">
+          <ion-icon name="document-text-outline"></ion-icon>
+          <ion-label>Notes</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="flashcards" routerLink="/flashcard">
+          <ion-icon name="albums-outline"></ion-icon>
+          <ion-label>Flashcards</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="study-plan" routerLink="/study-plan">
+          <ion-icon name="calendar-outline"></ion-icon>
+          <ion-label>Study Plan</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

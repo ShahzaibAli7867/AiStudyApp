@@ -1,0 +1,47 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Chat History</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="createNewChat()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list lines="none">
+    <ion-item-sliding *ngFor="let chat of chatConversations">
+      <ion-item (click)="openChat(chat.id)">
+        <ion-icon
+          slot="start"
+          [name]="chat.pinned ? 'bookmark' : 'bookmark-outline'"
+          [color]="chat.pinned ? 'primary' : 'medium'"
+          (click)="togglePin(chat.id, $event)"
+          class="pin-icon"
+        ></ion-icon>
+        <ion-label>
+          <h2>{{ chat.title }}</h2>
+          <p>{{ chat.messages[chat.messages.length - 1].text || 'No messages yet' }}</p>
+          <p class="timestamp">{{ chat.lastUpdated | date:'short' }}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="primary" (click)="editChatTitle(chat)">
+          <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="deleteChat(chat.id)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+    <ion-text *ngIf="chatConversations.length === 0" class="ion-text-center ion-padding-top">
+      <p>No chat history found. Start a new conversation!</p>
+    </ion-text>
+  </ion-list>
+</ion-content>

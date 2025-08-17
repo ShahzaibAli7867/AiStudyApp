@@ -1,0 +1,53 @@
+<ion-content class="ion-padding login-container">
+  <!-- Logo Section -->
+  <div class="logo">
+    <div class="logo-icon">
+      <ion-icon name="person-circle-outline"></ion-icon>
+    </div>
+    <h1>Welcome Back</h1>
+    <p>Sign in to your account to continue</p>
+  </div>
+
+  <!-- Social Login Section -->
+  <div class="social-login">
+    <ion-button expand="block" color="light" (click)="onGoogleLogin()">
+      <ion-icon name="logo-google" slot="start"></ion-icon>
+      Google
+    </ion-button>
+    <ion-button expand="block" color="light" (click)="onFacebookLogin()">
+      <ion-icon name="logo-facebook" slot="start"></ion-icon>
+      Facebook
+    </ion-button>
+  </div>
+
+  <!-- Divider -->
+  <div class="divider">
+    <span>Or continue with email</span>
+  </div>
+
+  <!-- Login Form -->
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <ion-item>
+      <ion-label position="floating">Email Address</ion-label>
+      <ion-input type="email" formControlName="email" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" formControlName="password" required></ion-input>
+    </ion-item>
+
+    <div class="form-options">
+      <ion-checkbox formControlName="remember"></ion-checkbox>
+      <label>Remember me</label>
+      <a class="forgot-password" href="#">Forgot Password?</a>
+    </div>
+
+    <ion-button expand="block" type="submit" class="login-btn" (click)="onLogin()">Sign In</ion-button>
+  </form>
+
+  <!-- Signup Link -->
+  <div class="signup-link">
+    Don’t have an account? <a href="#">Sign up here</a>
+  </div>
+</ion-content>

@@ -1,0 +1,47 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Notes History</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="createNewNote()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list lines="none">
+    <ion-item-sliding *ngFor="let note of notes">
+      <ion-item (click)="openNote(note.id)">
+        <ion-icon
+          slot="start"
+          [name]="note.pinned ? 'bookmark' : 'bookmark-outline'"
+          [color]="note.pinned ? 'primary' : 'medium'"
+          (click)="togglePin(note.id, $event)"
+          class="pin-icon"
+        ></ion-icon>
+        <ion-label>
+          <h2>{{ note.title || 'Untitled Note' }}</h2>
+          <p>{{ note.content.substring(0, 100) + (note.content.length > 100 ? '...' : '') || 'No content yet' }}</p>
+          <p class="timestamp">{{ note.lastUpdated | date:'short' }}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="primary" (click)="editNoteTitle(note)">
+          <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="deleteNote(note.id)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+    <ion-text *ngIf="notes.length === 0" class="ion-text-center ion-padding-top">
+      <p>No notes found. Create your first note!</p>
+    </ion-text>
+  </ion-list>
+</ion-content>

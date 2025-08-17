@@ -1,0 +1,199 @@
+flashcard-container {
+  max-width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.progress-section {
+  margin-bottom: 24px;
+  
+  .progress-text {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ion-color-dark);
+    margin-bottom: 8px;
+  }
+  
+  .progress-bar {
+    --progress-background: var(--ion-color-primary);
+    --background: var(--ion-color-light);
+    height: 6px;
+    border-radius: 3px;
+  }
+}
+
+.flashcard {
+  background: white;
+  border-radius: 16px;
+  padding: 0;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.card-image {
+  height: 200px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px 16px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  
+  .placeholder-icon {
+    font-size: 48px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+
+.card-content {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.question,
+.answer {
+  font-size: 20px;
+  line-height: 1.4;
+  color: var(--ion-color-dark);
+  text-align: center;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.answer {
+  color: var(--ion-color-primary);
+}
+
+.category-tag {
+  position: absolute;
+  bottom: 16px;
+  left: 24px;
+  background: var(--ion-color-light);
+  color: var(--ion-color-primary);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.tap-hint {
+  text-align: center;
+  padding: 0 24px 16px;
+  font-size: 14px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  
+  .action-btn {
+    flex: 1;
+    height: 48px;
+    --border-radius: 12px;
+    font-weight: 500;
+  }
+}
+
+.review-button {
+  text-align: center;
+  margin-bottom: 24px;
+  
+  .review-btn {
+    --color: var(--ion-color-medium);
+    font-size: 14px;
+  }
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  
+  .nav-btn {
+    --color: var(--ion-color-medium);
+    font-size: 24px;
+  }
+}
+
+.no-cards {
+  text-align: center;
+  padding: 48px 24px;
+  
+  .no-cards-icon {
+    font-size: 64px;
+    color: var(--ion-color-medium);
+    margin-bottom: 16px;
+  }
+  
+  h2 {
+    color: var(--ion-color-dark);
+    margin-bottom: 8px;
+  }
+  
+  p {
+    color: var(--ion-color-medium);
+    margin-bottom: 24px;
+  }
+}
+
+
+ion-footer {
+    ion-toolbar {
+      --background: #ffffff;
+      padding-bottom: env(safe-area-inset-bottom); // Account for notch on iPhones
+  
+      ion-tab-bar {
+        --background: #ffffff;
+        height: 18vw; // Responsive height for tab bar
+        max-height: 90px; // Max height for larger screens
+  
+        ion-tab-button {
+          --color: #92949c; // Default tab color
+          --color-selected: #667eea; // Selected tab color
+          flex-direction: column; // Stack icon and label
+          font-size: 2.5vw; // Responsive font size for labels
+  
+          ion-icon {
+            font-size: 6vw; // Responsive font size for icons
+            margin-bottom: 0.5vw; // Small space between icon and label
+          }
+  
+          @media (min-width: 768px) {
+            font-size: 0.8rem;
+            ion-icon {
+              font-size: 30px;
+              margin-bottom: 2px;
+            }
+          }
+        }
+      }
+    }
+  }

@@ -1,0 +1,176 @@
+ion-header {
+  ion-toolbar {
+    --background: transparent;
+    --border-width: 0; // Remove header border
+
+    ion-title {
+      font-weight: 600;
+      text-align: center;
+      padding: 0; // Ensure no extra padding
+    }
+
+    ion-buttons {
+      ion-button {
+        --padding-end: 4vw; // Adjust padding for settings icon
+        ion-icon {
+          font-size: 6vw; // Size for settings icon
+        }
+      }
+    }
+  }
+}
+
+ion-content {
+  --background: #f0f2f5; // Light background color for the content area
+
+  .main-content-wrapper {
+    width: 90%; // Overall content wrapper width
+    margin: 0 auto; // Center the wrapper
+    padding-top: 5%; // Padding from the top
+    padding-bottom: 5%; // Padding from the bottom for scroll space
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-section {
+    text-align: center;
+    margin-bottom: 5%; // Space below profile section
+
+    .avatar-container {
+      width: 30vw; // Responsive avatar size
+      height: 30vw; // Keep aspect ratio
+      max-width: 120px; // Max size for larger screens
+      max-height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 5%; // Center avatar and add space below
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    h2 {
+      font-size: 6vw; // Responsive font size
+      margin-bottom: 1%;
+      font-weight: 600;
+      color: #333;
+
+      @media (min-width: 768px) {
+        font-size: 2.5rem; // Larger font for bigger screens
+      }
+    }
+
+    p {
+      font-size: 3.5vw; // Responsive font size
+      color: #666;
+
+      @media (min-width: 768px) {
+        font-size: 1.1rem; // Larger font for bigger screens
+      }
+    }
+  }
+
+  .quick-actions-section {
+    width: 100%;
+    margin-top: 5%; // Space above quick actions
+
+    h3 {
+      font-size: 5vw; // Responsive font size
+      font-weight: 600;
+      margin-bottom: 4%; // Space below heading
+      color: #333;
+
+      @media (min-width: 768px) {
+        font-size: 1.8rem; // Larger font for bigger screens
+      }
+    }
+
+    .action-buttons-grid {
+      display: grid;
+      grid-template-columns: 48% 48%; // Two columns, 2% gap
+      gap: 4%; // Gap between grid items
+
+      .action-btn {
+        height: 18vw; // Responsive height for buttons
+        --border-radius: 15px; // Rounded corners
+        --border-width: 1px;
+        --border-color: #e0e0e0;
+        --background: #ffffff;
+        --color: #333;
+        font-size: 3.5vw; // Responsive font size for text
+        font-weight: 500;
+        text-transform: none; // Prevent uppercase
+
+        ion-icon {
+          font-size: 8vw; // Responsive icon size
+          margin-bottom: 1vw; // Space between icon and text
+          --color: #667eea; // Primary color for icons
+        }
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &:active {
+          // Add a subtle effect on tap
+          transform: translateY(1px);
+        }
+
+        // Adjust max height for larger screens
+        @media (min-width: 768px) {
+          height: 90px;
+          font-size: 1.1rem;
+          ion-icon {
+            font-size: 40px;
+            margin-bottom: 5px;
+          }
+        }
+      }
+
+      // Specific style for "Progress Tracker" to span two columns
+      .action-btn:last-child {
+        grid-column: span 2; // Make it span both columns
+        width: 100%; // Ensure it takes full width
+      }
+    }
+  }
+}
+
+ion-footer {
+  ion-toolbar {
+    --background: #ffffff;
+    padding-bottom: env(safe-area-inset-bottom); // Account for notch on iPhones
+
+    ion-tab-bar {
+      --background: #ffffff;
+      height: 18vw; // Responsive height for tab bar
+      max-height: 90px; // Max height for larger screens
+
+      ion-tab-button {
+        --color: #92949c; // Default tab color
+        --color-selected: #667eea; // Selected tab color
+        flex-direction: column; // Stack icon and label
+        font-size: 2.5vw; // Responsive font size for labels
+
+        ion-icon {
+          font-size: 6vw; // Responsive font size for icons
+          margin-bottom: 0.5vw; // Small space between icon and label
+        }
+
+        @media (min-width: 768px) {
+          font-size: 0.8rem;
+          ion-icon {
+            font-size: 30px;
+            margin-bottom: 2px;
+          }
+        }
+      }
+    }
+  }
+}

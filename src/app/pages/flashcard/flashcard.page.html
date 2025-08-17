@@ -1,0 +1,136 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Flashcards</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="flashcard-container" *ngIf="currentCard">
+    <!-- Progress -->
+    <div class="progress-section">
+      <div class="progress-text">{{ progressCount }}</div>
+      <ion-progress-bar [value]="progressPercentage / 100" class="progress-bar"></ion-progress-bar>
+    </div>
+
+    <!-- Flashcard -->
+    <div class="flashcard" (click)="toggleAnswer()">
+      <div class="card-image">
+        <!-- Placeholder for image, you can add actual images here -->
+        <div class="image-placeholder">
+          <ion-icon name="library" class="placeholder-icon"></ion-icon>
+        </div>
+      </div>
+
+      <div class="card-content">
+        <div class="question" *ngIf="!showAnswer">
+          {{ currentCard.question }}
+        </div>
+        <div class="answer" *ngIf="showAnswer">
+          {{ currentCard.answer }}
+        </div>
+        
+        <div class="category-tag">
+          {{ currentCard.category }}
+        </div>
+      </div>
+      
+      <div class="tap-hint" *ngIf="!showAnswer">
+        <ion-text color="medium">Tap to reveal answer</ion-text>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons" *ngIf="showAnswer">
+      <ion-button 
+        fill="outline" 
+        color="danger"
+        (click)="markAsDontKnow()"
+        class="action-btn">
+        Don't Know
+      </ion-button>
+
+      <ion-button 
+        fill="solid" 
+        color="success"
+        (click)="markAsKnow()"
+        class="action-btn">
+        Know
+      </ion-button>
+    </div>
+
+    <div class="review-button" *ngIf="showAnswer">
+      <ion-button 
+        fill="clear" 
+        color="medium"
+        (click)="reviewLater()"
+        class="review-btn">
+        Review Later
+      </ion-button>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation-buttons">
+      <ion-button 
+        fill="clear" 
+        (click)="previousCard()" 
+        [disabled]="currentCardIndex === 0"
+        class="nav-btn">
+        <ion-icon name="chevron-back" slot="icon-only"></ion-icon>
+      </ion-button>
+
+      <ion-button 
+        fill="clear" 
+        (click)="nextCard()" 
+        [disabled]="currentCardIndex === flashcards.length - 1"
+        class="nav-btn">
+        <ion-icon name="chevron-forward" slot="icon-only"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+
+  <!-- No flashcards message -->
+  <div class="no-cards" *ngIf="!currentCard">
+    <ion-icon name="library-outline" class="no-cards-icon"></ion-icon>
+    <h2>No Flashcards Available</h2>
+    <p>Go back to the note editor and generate some flashcards first.</p>
+    <ion-button fill="solid" (click)="goBack()">
+      Back to Editor
+    </ion-button>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="home" routerLink="/home" routerDirection="root">
+          <ion-icon name="home-outline"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="ai-chat" routerLink="/ai-chat">
+          <ion-icon name="chatbox-outline"></ion-icon>
+          <ion-label>AI Chat</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="notes" routerLink="/notes">
+          <ion-icon name="document-text-outline"></ion-icon>
+          <ion-label>Notes</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="flashcards" routerLink="/flashcard">
+          <ion-icon name="albums-outline"></ion-icon>
+          <ion-label>Flashcards</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="study-plan" routerLink="/study-plan">
+          <ion-icon name="calendar-outline"></ion-icon>
+          <ion-label>Study Plan</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

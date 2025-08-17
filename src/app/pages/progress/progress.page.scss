@@ -1,0 +1,37 @@
+
+
+
+
+
+ion-footer {
+    ion-toolbar {
+      --background: #ffffff;
+      padding-bottom: env(safe-area-inset-bottom); // Account for notch on iPhones
+  
+      ion-tab-bar {
+        --background: #ffffff;
+        height: 18vw; // Responsive height for tab bar
+        max-height: 90px; // Max height for larger screens
+  
+        ion-tab-button {
+          --color: #92949c; // Default tab color
+          --color-selected: #667eea; // Selected tab color
+          flex-direction: column; // Stack icon and label
+          font-size: 2.5vw; // Responsive font size for labels
+  
+          ion-icon {
+            font-size: 6vw; // Responsive font size for icons
+            margin-bottom: 0.5vw; // Small space between icon and label
+          }
+  
+          @media (min-width: 768px) {
+            font-size: 0.8rem;
+            ion-icon {
+              font-size: 30px;
+              margin-bottom: 2px;
+            }
+          }
+        }
+      }
+    }
+  }

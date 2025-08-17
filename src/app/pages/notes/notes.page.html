@@ -1,0 +1,119 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Note Editor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="note-container">
+    <!-- Title Input -->
+    <div class="input-section">
+      <ion-label position="stacked">Title</ion-label>
+      <ion-input 
+        [(ngModel)]="note.title" 
+        placeholder="Enter note title..."
+        class="title-input">
+      </ion-input>
+    </div>
+
+    <!-- Content Textarea -->
+    <div class="input-section">
+      <ion-textarea 
+        [(ngModel)]="note.content"
+        placeholder="Start writing your note..."
+        rows="8"
+        class="content-textarea">
+      </ion-textarea>
+    </div>
+
+    <!-- Summary Display -->
+    <div *ngIf="note.summary" class="summary-section">
+      <h3>Summary</h3>
+      <div class="summary-content">
+        {{ note.summary }}
+      </div>
+    </div>
+
+    <!-- Key Points Display -->
+    <div *ngIf="note.keyPoints && note.keyPoints.length > 0" class="keypoints-section">
+      <h3>Key Points</h3>
+      <div class="keypoints-content">
+        <div *ngFor="let point of note.keyPoints" class="key-point">
+          <ion-icon name="chevron-forward" class="point-icon"></ion-icon>
+          {{ point }}
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Actions -->
+    <div class="ai-actions">
+      <h3>AI Actions</h3>
+      <div class="action-buttons">
+        <ion-button 
+          expand="block" 
+          fill="solid" 
+          color="primary"
+          (click)="generateSummary()"
+          class="action-btn">
+          <ion-icon name="document-text" slot="start"></ion-icon>
+          Generate Summary
+        </ion-button>
+
+        <ion-button 
+          expand="block" 
+          fill="outline" 
+          color="primary"
+          (click)="highlightKeyPoints()"
+          class="action-btn">
+          <ion-icon name="list" slot="start"></ion-icon>
+          Highlight Key Points
+        </ion-button>
+
+        <ion-button 
+          expand="block" 
+          fill="solid" 
+          color="secondary"
+          (click)="convertToFlashcards()"
+          class="action-btn convert-btn">
+          <ion-icon name="layers" slot="start"></ion-icon>
+          Convert to Flashcards
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="home" routerLink="/home" routerDirection="root">
+          <ion-icon name="home-outline"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="ai-chat" routerLink="/ai-chat">
+          <ion-icon name="chatbox-outline"></ion-icon>
+          <ion-label>AI Chat</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="notes" routerLink="/notes">
+          <ion-icon name="document-text-outline"></ion-icon>
+          <ion-label>Notes</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="flashcards" routerLink="/flashcard">
+          <ion-icon name="albums-outline"></ion-icon>
+          <ion-label>Flashcards</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="study-plan" routerLink="/study-plan">
+          <ion-icon name="calendar-outline"></ion-icon>
+          <ion-label>Study Plan</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

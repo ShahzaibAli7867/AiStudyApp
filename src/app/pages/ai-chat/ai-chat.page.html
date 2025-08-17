@@ -1,0 +1,106 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>AI Chat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" #chatContent>
+  <div class="chat-container">
+    <div *ngFor="let message of messages" [class]="message.sender === 'user' ? 'message-bubble user-message' : 'message-bubble ai-message'">
+      <div class="avatar-wrapper" [class.user-avatar-wrapper]="message.sender === 'user'">
+        <img [src]="message.sender === 'user' ? userAvatar : aiAvatar" alt="Avatar" class="message-avatar" />
+      </div>
+      <div class="message-content">
+        <span class="sender-name">{{ message.sender === 'user' ? 'Sophia' : 'Study AI' }}</span>
+        <p>{{ message.text }}</p>
+      </div>
+    </div>
+
+    <div class="message-bubble ai-message" *ngIf="isTyping">
+      <div class="avatar-wrapper">
+        <img [src]="aiAvatar" alt="Study AI Avatar" class="message-avatar" />
+      </div>
+      <div class="message-content">
+        <span class="sender-name">Study AI</span>
+        <div class="typing-indicator">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar class="message-input-toolbar">
+    <div class="input-wrapper">
+      <img [src]="userAvatar" alt="User Avatar" class="input-avatar" />
+      <ion-textarea
+        class="message-input"
+        placeholder="Ask me anything..."
+        rows="1"
+        autoGrow="true"
+        [(ngModel)]="userMessage"
+        (ionChange)="adjustInputHeight()"
+        (ionBlur)="adjustInputHeight()"
+        (keyup.enter)="sendMessage()"
+      ></ion-textarea>
+      <div class="input-actions">
+<ion-button (click)="startRecording()" [disabled]="isRecording" expand="block">
+    Start Recording
+  </ion-button>
+
+  <ion-button (click)="stopRecording()" [disabled]="!isRecording" expand="block" color="danger">
+    Stop Recording
+  </ion-button>
+
+  <div *ngIf="recordedAudio" style="margin-top: 20px;">
+    <h3>Playback:</h3>
+    <audio [src]="recordedAudio" controls></audio>
+  </div>
+  <ion-icon name="attach-outline" class="action-icon" (click)="attachFile()"></ion-icon>
+      </div>
+    </div>
+    <ion-button slot="end" fill="clear" (click)="sendMessage()" [disabled]="!userMessage.trim()">
+      <ion-icon name="send" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="home" routerLink="/home" routerDirection="root">
+          <ion-icon name="home-outline"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="ai-chat" routerLink="/ai-chat">
+          <ion-icon name="chatbox-outline"></ion-icon>
+          <ion-label>AI Chat</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="notes" routerLink="/notes">
+          <ion-icon name="document-text-outline"></ion-icon>
+          <ion-label>Notes</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="flashcards" routerLink="/flashcard">
+          <ion-icon name="albums-outline"></ion-icon>
+          <ion-label>Flashcards</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="study-plan" routerLink="/study-plan">
+          <ion-icon name="calendar-outline"></ion-icon>
+          <ion-label>Study Plan</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>
